@@ -35,7 +35,7 @@ Cette année de spécialisation se concentre sur la conception d'architectures c
 Voici l'organisation des projets présents dans ce répertoire :
 
 ```text
-.
+📂 RT3-Projets
 ├── 📂 BUT SEMESTRE S5 | SAE/
 │   └── 📂 SAE5.01 - Concevoir, réaliser et présenter une solution technique
 │
