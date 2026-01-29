@@ -92,7 +92,7 @@ mon_portail_vm/
 
 ## ⚙ Installation et Configuration
 
-### Phase 1 : Architecture Réseau
+### 1. Architecture Réseau
 
 L'infrastructure repose sur une segmentation stricte via pfSense:
 
@@ -100,7 +100,7 @@ L'infrastructure repose sur une segmentation stricte via pfSense:
 * Zone Privée (LAN) : 192.168.1.0/24 (Héberge les VMs et l'AD, inaccessible de l'extérieur).
 * Isolation : Utilisation d'un pont Linux (vmbr0) sans port physique pour isoler le LAN.
 
-### Phase 2 : Automatisation (Le Défi du Proxy)
+### 2. Automatisation (Le Défi du Proxy)
 
 Un défi majeur a été le blocage des appels API locaux par le proxy de l'université. Nous avons implémenté un Bypass Proxy dans le script Python.
 
@@ -123,6 +123,8 @@ Au lieu d'attendre la remontée d'IP par l'agent QEMU (lent), nous utilisons une
 * Il configure immédiatement Guacamole avec ce nom de domaine.
 * Résultat : L'accès est disponible quasi-instantanément.
 
+---
+
 ## 📊 Bilan
 
 Ce projet a permis de livrer une plateforme "Clef en main" répondant aux contraintes de sécurité et de performance.
@@ -130,6 +132,8 @@ Ce projet a permis de livrer une plateforme "Clef en main" répondant aux contra
 * Interopérabilité : Réussite du dialogue entre des briques hétérogènes (Proxmox REST, Guacamole MySQL, AD LDAP).
 * Résilience : L'infrastructure est documentée et prête pour la production.
 * Compétences : Montée en compétence forte sur le routage complexe, le débogage API (Proxy) et l'administration système.
+
+--- 
 
 ## 👤 Auteurs
 
