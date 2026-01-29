@@ -79,7 +79,7 @@ Le cœur du système repose sur un **portail d'automatisation** développé en P
 L'application d'automatisation (Portail Web) est structurée comme suit :
 
 ```text
-📂 SAE5.01 - Concevoir, réaliser et présenter une solution technique
+📂 SAE5.01 - Concevoir, réaliser et présenter une solution technique/
 ├── 📄 README.md                # README du projet
 ├── 📄 Rapport SAE 5.01.pdf     # Rapport complet (PDF)
 └── 📂 mon_portail_vm/
