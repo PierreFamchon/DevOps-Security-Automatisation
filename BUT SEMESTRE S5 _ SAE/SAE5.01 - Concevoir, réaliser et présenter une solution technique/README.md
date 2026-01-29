@@ -1,29 +1,48 @@
-# 🖥️ Infrastructure VDI & Automatisation (SAE 5.01)
+<div align="center">
 
-![Proxmox](https://img.shields.io/badge/Virtualization-Proxmox%20VE-orange) ![Python](https://img.shields.io/badge/Backend-Python%20Flask-blue) ![Guacamole](https://img.shields.io/badge/Remote-Apache%20Guacamole-green) ![pfSense](https://img.shields.io/badge/Security-pfSense-darkblue)
+  <img src="https://cdn-icons-png.flaticon.com/512/2875/2875331.png" alt="Logo VDI Project" width="120" height="120">
 
-Ce projet vise à concevoir et déployer une **Infrastructure de Bureau Virtuel (VDI)** complète. L'objectif est de permettre aux étudiants et enseignants d'accéder à des environnements de Travaux Pratiques (Linux, Windows, Kali) à la demande, depuis n'importe quel navigateur web, sans installation de client lourd.
+  # 🖥️ Infrastructure VDI & Automatisation (SAE 5.01)
 
-Le projet inclut un **portail d'automatisation** développé en Python/Flask pour l'orchestration des VMs.
+  **Conception, Déploiement et Automatisation d'une Infrastructure de Bureau Virtuel**
 
-## 📋 Sommaire
-- [Architecture Globale](#-architecture-globale)
-- [Stack Technique](#-stack-technique)
-- [Fonctionnalités Clés](#-fonctionnalités-clés)
-- [Installation et Configuration](#-installation-et-configuration)
-- [Le Portail d'Automatisation](#-le-portail-dautomatisation)
-- [Innovation : Workflow DNS](#-innovation--workflow-dns-instantané)
-- [Auteurs](#-auteurs)
+  ![Proxmox](https://img.shields.io/badge/Virtualization-Proxmox%20VE-orange?style=for-the-badge&logo=proxmox&logoColor=white)
+  ![Python](https://img.shields.io/badge/Backend-Python%20Flask-blue?style=for-the-badge&logo=python&logoColor=white)
+  ![Guacamole](https://img.shields.io/badge/Remote-Apache%20Guacamole-green?style=for-the-badge&logo=apache&logoColor=white)
+  ![pfSense](https://img.shields.io/badge/Security-pfSense-darkblue?style=for-the-badge&logo=pfsense&logoColor=white)
+
+  <br>
+
+  [Description](#-description) •
+  [Fonctionnalités](#-fonctionnalités-clés) •
+  [Stack Technique](#-stack-technique) •
+  [Structure](#-structure-du-projet) •
+  [Installation](#-installation-et-configuration) •
+  [Phases](#-phases-du-projet) •
+  [Bilan](#-bilan) •
+  [Auteurs](#-auteurs)
+
+</div>
 
 ---
 
-## 🏗 Architecture Globale
+## 📝 Description
 
-[cite_start]L'infrastructure repose sur un serveur physique hébergeant un hyperviseur et une segmentation réseau stricte pour garantir la sécurité.
+Ce projet vise à concevoir et déployer une **Infrastructure de Bureau Virtuel (VDI)** complète. L'objectif est de permettre aux étudiants et enseignants d'accéder à des environnements de Travaux Pratiques (Linux, Windows, Kali) à la demande, depuis n'importe quel navigateur web, sans installation de client lourd.
 
-* **Zone Publique (WAN)** : Connectée au réseau de l'IUT (172.31.xx.xx).
-* **Zone Privée (LAN)** : Réseau interne (192.168.1.0/24) hébergeant les VMs et services critiques.
-* **Passerelle** : Un routeur virtuel (pfSense) assure la liaison et le filtrage entre ces zones, rendant le LAN inaccessible directement depuis l'extérieur.
+Le cœur du système repose sur un **portail d'automatisation** développé en Python/Flask qui orchestre l'hyperviseur et la passerelle d'accès.
+
+---
+
+## 🚀 Fonctionnalités Clés
+
+* **Accès "Zero Client"** : Tout se passe dans le navigateur web via HTML5 (RDP/SSH via Guacamole).
+* **Double Authentification Hybride** :
+    * **LDAP (Active Directory)** : Authentification unique pour les étudiants et enseignants.
+    * **MySQL (MariaDB)** : Gestion technique des connexions VDI.
+* **Provisionnement Automatique** : Clonage instantané de "Golden Images" via l'API Proxmox.
+* **Zero Touch Provisioning** : Les VMs rejoignent automatiquement le domaine AD au démarrage via un script embarqué (`join-ad.sh`).
+* **Green IT** : Gestion dynamique des ressources pour éviter le "VM Sprawl" (machines zombies) et réduire l'empreinte énergétique.
 
 ---
 
@@ -55,50 +74,35 @@ Le projet inclut un **portail d'automatisation** développé en Python/Flask pou
 
 ---
 
-## 🚀 Fonctionnalités Clés
+## 📂 Structure du Projet
 
-* **Accès "Zero Client"** : Tout se passe dans le navigateur web via HTML5.
-* **Double Authentification Hybride** :
-    * **LDAP (AD)** : Pour l'authentification des utilisateurs (étudiants/profs).
-    * **MySQL** : Pour stocker la configuration technique des connexions.
-* **Provisionnement Automatique** : Clonage de "Golden Images" (Windows/Linux) via l'API Proxmox.
-* **Intégration Active Directory** : Les VMs rejoignent automatiquement le domaine au démarrage via un script `join-ad.sh` (Zero Touch).
-* **Green IT** : Gestion dynamique des ressources pour éviter le gaspillage énergétique et le "VM Sprawl".
+L'application d'automatisation (Portail Web) est structurée comme suit :
 
+```text
+mon_portail_vm/
+│
+├── 🐍 app.py               # Cœur de l'application (Logique métier, Routes Flask)
+├── ⚙️ config.py            # Secrets (Tokens API Proxmox/Guac, URLs)
+│
+└── 📂 templates/           # Interface Utilisateur (Frontend HTML)
+    ├── 📄 login.html       # Page d'authentification
+    └── 📄 dashboard.html   # Tableau de bord de gestion des VMs
+```
 ---
 
 ## ⚙ Installation et Configuration
 
-### 1. Hyperviseur & Réseau (Proxmox + pfSense)
-* **Proxmox** : Création d'un pont Linux (`vmbr0`) isolé pour le LAN interne, sans port physique lié.
-* **pfSense** :
-    * **Interface WAN** : Configuration DHCP (IP en 172.31.x.x).
-    * **Interface LAN** : IP statique `192.168.1.1`.
-    * **NAT Outbound** : Mode automatique pour permettre aux VMs de sortir sur Internet.
-    * **Port Forwarding** : Redirection du port 8080 (WAN) vers l'IP interne de Guacamole.
+### Phase 1 : Architecture Réseau
 
-### 2. Services d'Annuaire (Windows AD)
-* **Domaine** : `dom-famchon.rt.lan`.
-* **DNS** : Création d'une zone inversée `16.31.172.in-addr.arpa` pour la résolution IP → Nom.
-* **Redirecteurs** : Ajout de l'IP pfSense (`192.168.1.1`) pour résoudre les noms internet.
+L'infrastructure repose sur une segmentation stricte via pfSense:
 
-### 3. Passerelle Apache Guacamole
-* **Installation** : Compilation de `guacd` et déploiement du `.war` sur Tomcat 9.
-* **Liaison AD** : Configuration du fichier `guacamole.properties` avec `ldap-user-base-dn: DC=dom-famchon,DC=rt,DC=lan`.
+* Zone Publique (WAN) : 172.31.xx.xx (Connecté au réseau IUT).
+* Zone Privée (LAN) : 192.168.1.0/24 (Héberge les VMs et l'AD, inaccessible de l'extérieur).
+* Isolation : Utilisation d'un pont Linux (vmbr0) sans port physique pour isoler le LAN.
 
----
+### Phase 2 : Automatisation (Le Défi du Proxy)
 
-## 🐍 Le Portail d'Automatisation (Python/Flask)
-
-[cite_start]L'application agit comme un chef d'orchestre entre l'utilisateur, l'API Proxmox et l'API Guacamole[cite: 1183].
-
-### Structure
-* `app.py` : Cœur de l'application (Logique métier, Routes).
-* `config.py` : Contient les secrets (Tokens API, URLs).
-* `templates/` : Interfaces HTML (Login, Dashboard).
-
-### Contournement du Proxy (Challenge Technique)
-Le script Python passait par le proxy de l'université pour joindre `localhost`, causant des erreurs. Nous avons forcé le bypass du proxy pour les requêtes locales.
+Un défi majeur a été le blocage des appels API locaux par le proxy de l'université. Nous avons implémenté un Bypass Proxy dans le script Python.
 
 ```python
 # app.py - Solution Bypass Proxy
@@ -106,5 +110,33 @@ NO_PROXY = {
     "http": None,
     "https": None,
 }
-# Utilisation dans les appels API
+# Utilisation dans les appels API pour forcer le trafic local
 requests.post(url, data=data, proxies=NO_PROXY)
+```
+
+### 3. Innovation : Workflow DNS Instantané
+
+Au lieu d'attendre la remontée d'IP par l'agent QEMU (lent), nous utilisons une prédiction DNS.
+
+* Le script génère le nom de la VM (ex: user-tp1).
+* Il construit le FQDN (user-tp1.dom-famchon.rt.lan).
+* Il configure immédiatement Guacamole avec ce nom de domaine.
+* Résultat : L'accès est disponible quasi-instantanément.
+
+## 📊 Bilan
+
+Ce projet a permis de livrer une plateforme "Clef en main" répondant aux contraintes de sécurité et de performance.
+
+* Interopérabilité : Réussite du dialogue entre des briques hétérogènes (Proxmox REST, Guacamole MySQL, AD LDAP).
+* Résilience : L'infrastructure est documentée et prête pour la production.
+* Compétences : Montée en compétence forte sur le routage complexe, le débogage API (Proxy) et l'administration système.
+
+## 👤 Auteurs
+
+Étudiants R&T 3ème Année (2025-2026)
+
+    Pierre FAMCHON (Chef de projet, Automatisation, AD, Guacamole)
+
+    Nicolas ÉDOUARD (Virtualisation, Réseau, Templates)
+
+    Yohan PIEK (Documentation, Tests, Support)
