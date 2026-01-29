@@ -29,14 +29,29 @@ Le projet inclut un **portail d'automatisation** développé en Python/Flask pou
 
 ## 🛠 Stack Technique
 
-| Composant | Technologie | Rôle |
-| :--- | :--- | :--- |
-| **Hyperviseur** | Proxmox VE 8.0 | Gestion des conteneurs LXC et KVM, API REST pour l'automatisation. |
-| **Sécurité** | pfSense (FreeBSD) | Pare-feu, NAT, DHCP, Filtrage ACL. |
-| **Accès Distant** | Apache Guacamole | Gateway "Clientless" RDP/SSH vers HTML5. |
-| **Annuaire** | Windows Server 2016 | Active Directory (AD DS) et DNS pour la résolution de noms. |
-| **Automatisation** | Python 3 + Flask | Portail web pour le provisionnement automatique des VMs via API. |
-| **Base de données** | MariaDB | Stockage des configurations de connexion Guacamole. |
+### Infrastructure & Virtualisation
+
+![Proxmox](https://img.shields.io/badge/HYPERVISOR-PROXMOX%20VE%208-E57000?style=for-the-badge&logo=proxmox&logoColor=white)
+![LXC](https://img.shields.io/badge/CONTAINER-LXC-E57000?style=for-the-badge&labelColor=404040)
+![KVM](https://img.shields.io/badge/VIRTUALIZATION-KVM-404040?style=for-the-badge&labelColor=E57000)
+
+### Sécurité & Réseau
+
+![pfSense](https://img.shields.io/badge/FIREWALL-PFSENSE-2C3E50?style=for-the-badge&logo=pfsense&logoColor=white)
+![FreeBSD](https://img.shields.io/badge/OS-FREEBSD-AB2B28?style=for-the-badge&labelColor=404040&logo=freebsd&logoColor=white)
+![Guacamole](https://img.shields.io/badge/GATEWAY-APACHE%20GUACAMOLE-256627?style=for-the-badge&logo=apache&logoColor=white)
+
+### Annuaire & Identité
+
+![Windows Server](https://img.shields.io/badge/OS-WINDOWS%20SERVER%202016-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Active Directory](https://img.shields.io/badge/IAM-ACTIVE%20DIRECTORY-0078D6?style=for-the-badge&labelColor=404040&logo=microsoft&logoColor=white)
+![DNS](https://img.shields.io/badge/SERVICE-DNS-404040?style=for-the-badge&labelColor=0078D6)
+
+### Automatisation & Données
+
+![Python](https://img.shields.io/badge/LANGUAGE-PYTHON%203-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/FRAMEWORK-FLASK-000000?style=for-the-badge&logo=flask&logoColor=white)
+![MariaDB](https://img.shields.io/badge/DATABASE-MARIADB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 
 ---
 
