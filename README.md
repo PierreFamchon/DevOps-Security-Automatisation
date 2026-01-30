@@ -35,7 +35,7 @@ Cette année de spécialisation se concentre sur la conception d'architectures c
 Voici l'organisation des projets présents dans ce répertoire :
 
 ```text
-📂 DevOps-SecOps-Engineering/                 
+📂 DevOps-SecOps-Automatisation/                 
 │
 ├── 📂 Advanced-Solution-Design/             
 │   └── 📂 Enterprise-Infrastructure-Project 
