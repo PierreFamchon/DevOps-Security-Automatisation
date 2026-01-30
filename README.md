@@ -58,7 +58,7 @@ Voici l'organisation des projets présents dans ce répertoire :
 | Projet | Thématique | Technologies Clés |
 | :--- | :--- | :--- |
 | **📂 End-of-Studies-Internship** | **Stage de Fin d'Études**<br>Immersion professionnelle et mémoire. | ![Pro](https://img.shields.io/badge/Type-Professionnel-blueviolet?style=flat-square) ![Rapport](https://img.shields.io/badge/Doc-M%C3%A9moire-lightgrey?style=flat-square) |
-| **SAE 6.Cyber** | **Réponse à Incident**<br>Réagir face à une cyber-attaque. | ![BlueTeam](https://img.shields.io/badge/Sec-Blue_Team-blue?style=flat-square) ![SOC](https://img.shields.io/badge/Ops-SOC%2FSIEM-red?style=flat-square) |
+| **📂 Incident-Response-Forensics** | **Réponse à Incident**<br>Réagir face à une cyber-attaque. | ![BlueTeam](https://img.shields.io/badge/Sec-Blue_Team-blue?style=flat-square) ![SOC](https://img.shields.io/badge/Ops-SOC%2FSIEM-red?style=flat-square) |
 
 ---
 
