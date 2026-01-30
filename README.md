@@ -45,7 +45,7 @@ Voici l'organisation des projets présents dans ce répertoire :
     └── 📂 Incident-Response-Forensics       
 ```
 
-## 🎓 RT3 : Détail des Semestres : 📂 [DevOps-Security-Automatisation/](./)
+## 🎓 RT3 - Détail des Semestres : 📂 [DevOps-Security-Automatisation/](./)
 
 ### **📈 BUT SEMESTRE 5 :  📂 [Advanced-Solution-Design/](./Advanced-Solution-Design)**
 
