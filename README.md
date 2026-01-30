@@ -51,7 +51,7 @@ Voici l'organisation des projets présents dans ce répertoire :
 
 | Projet | Thématique | Technologies Clés |
 | :--- | :--- | :--- |
-| **📂 Enterprise-Infrastructure-Project** (https://github.com/PierreFamchon/DevOps-Security-Automatisation)| **Infrastructure VDI & Auto.**<br>Solution d'accès distant aux TP. | ![Proxmox](https://img.shields.io/badge/Virt-Proxmox_VE-E57000?style=flat-square&logo=proxmox&logoColor=white) ![Guacamole](https://img.shields.io/badge/Gateway-Guacamole-256627?style=flat-square&logo=apache&logoColor=white) <br> ![Python](https://img.shields.io/badge/Auto-Python_Flask-3776AB?style=flat-square&logo=python&logoColor=white) |
+| **📂 [Enterprise-Infrastructure-Project](https://github.com/PierreFamchon/DevOps-Security-Automatisation/Enterprise-Infrastructure-Project)** | **Infrastructure VDI & Auto.**<br>Solution d'accès distant aux TP. | ![Proxmox](https://img.shields.io/badge/Virt-Proxmox_VE-E57000?style=flat-square&logo=proxmox&logoColor=white) ![Guacamole](https://img.shields.io/badge/Gateway-Guacamole-256627?style=flat-square&logo=apache&logoColor=white) <br> ![Python](https://img.shields.io/badge/Auto-Python_Flask-3776AB?style=flat-square&logo=python&logoColor=white) |
 
 ### 📂 BUT SEMESTRE 6
 
