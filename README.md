@@ -73,3 +73,4 @@ Voici l'organisation des projets présents dans ce répertoire :
 Pierre Famchon
 
 * Étudiant en BUT R&T (Réseaux et Télécommunications).
+* Passionné par l'automatisation, la cybersécurité et l'architecture réseau.
