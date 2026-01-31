@@ -95,7 +95,16 @@ L'application d'automatisation (Portail Web) est structurée comme suit :
 
 ## ⚙ Installation et Configuration
 
-### 1. Architecture Réseau
+### 1. Clone du Dépot 
+
+```bash
+git clone [https://github.com/PierreFamchon/DevOps-Security-Automatisation.git](https://github.com/PierreFamchon/DevOps-Security-Automatisation.git)
+cd DevOps-Security-Automatisation
+cd Advanced-Solution-Design
+cd Enterprise-Infrastructure-Project
+```
+
+### 2. Architecture Réseau
 
 L'infrastructure repose sur une segmentation stricte via pfSense:
 
@@ -103,7 +112,7 @@ L'infrastructure repose sur une segmentation stricte via pfSense:
 * Zone Privée (LAN) : 192.168.1.0/24 (Héberge les VMs et l'AD, inaccessible de l'extérieur).
 * Isolation : Utilisation d'un pont Linux (vmbr0) sans port physique pour isoler le LAN.
 
-### 2. Automatisation (Le Défi du Proxy)
+### 3. Automatisation (Le Défi du Proxy)
 
 Un défi majeur a été le blocage des appels API locaux par le proxy de l'université. Nous avons implémenté un Bypass Proxy dans le script Python.
 
@@ -117,7 +126,7 @@ NO_PROXY = {
 requests.post(url, data=data, proxies=NO_PROXY)
 ```
 
-### 3. Innovation : Workflow DNS Instantané
+### 4. Innovation : Workflow DNS Instantané
 
 Au lieu d'attendre la remontée d'IP par l'agent QEMU (lent), nous utilisons une prédiction DNS.
 
